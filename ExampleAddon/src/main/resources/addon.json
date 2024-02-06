@@ -1,0 +1,9 @@
+{
+  "name": "ExampleAddon",
+  "version": "1.0",
+  "main": "org.by1337.exampleaddon.ExampleAddon",
+  "authors": [
+    "By1337"
+  ],
+  "description": "description"
+}
