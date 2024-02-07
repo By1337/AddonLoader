@@ -11,7 +11,6 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.jar.JarFile;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class AddonClassLoader extends URLClassLoader {
@@ -22,7 +21,7 @@ public class AddonClassLoader extends URLClassLoader {
     private final File file;
     private final JarFile jar;
     private final Logger logger;
-    private final JavaAddon module;
+    private final JavaAddon addon;
     private final AddonLoader loader;
     private final Set<String> seenIllegalAccess = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
@@ -53,7 +52,7 @@ public class AddonClassLoader extends URLClassLoader {
                 throw new InvalidAddonException("main class `" + description.getMain() + "' does not extend JavaAddon", ex);
             }
 
-            module = pluginClass.newInstance();
+            addon = pluginClass.newInstance();
         } catch (IllegalAccessException ex) {
             throw new InvalidAddonException("No public constructor", ex);
         } catch (InstantiationException ex) {
@@ -92,7 +91,7 @@ public class AddonClassLoader extends URLClassLoader {
             Class<?> result = loader.getClassByName(name, resolve);
 
             if (result != null && result.getClassLoader() instanceof AddonClassLoader addonClassLoader) {
-                String addon = addonClassLoader.module.getName();
+                String addon = addonClassLoader.addon.getName();
 //                if (!seenIllegalAccess.contains(addon) &&
 //                        (!description.getDepend().contains(addon) ||
 //                                !description.getSoftdepend().contains(addon) ||
@@ -131,7 +130,7 @@ public class AddonClassLoader extends URLClassLoader {
         return logger;
     }
 
-    public JavaAddon getModule() {
-        return module;
+    public JavaAddon getAddon() {
+        return addon;
     }
 }

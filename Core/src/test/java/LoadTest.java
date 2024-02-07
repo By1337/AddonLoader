@@ -7,7 +7,7 @@ import java.util.logging.Logger;
 
 public class LoadTest {
     @Test
-    public void run(){
+    public void run() {
         File file = new File("./src/test/module");
         Logger logger = Logger.getLogger("module_load_test");
 
@@ -17,8 +17,8 @@ public class LoadTest {
         Assert.assertNotNull(loader.getModule("ExampleAddon"));
 
         loader.enableAll();
+
         loader.disableAll();
         loader.unloadAll();
-
     }
 }

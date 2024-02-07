@@ -16,6 +16,7 @@ public class ExampleAddon extends JavaAddon {
 
     @Override
     public void onEnable() {
+        Objects.requireNonNull(getInstance());
         getLogger().info("enabled!");
         File config = new File(getDataFolder() + "/config.yml");
         if (!config.exists()){
@@ -28,6 +29,7 @@ public class ExampleAddon extends JavaAddon {
     @Override
     public void onDisable() {
         getLogger().info("disabled!");
+        PingClass.ping();
     }
 
     public static Addon getInstance() {

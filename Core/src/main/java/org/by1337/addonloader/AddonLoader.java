@@ -99,7 +99,7 @@ public class AddonLoader {
         addons.keySet().forEach(this::disable);
     }
 
-    private void removeModule(String name) {
+    private void removeAddon(String name) {
         addons.remove(name);
     }
 
@@ -121,8 +121,10 @@ public class AddonLoader {
             dataFolder.mkdir();
         }
         AddonClassLoader loader = new AddonClassLoader(getClass().getClassLoader(), description, dataFolder, file, logger, this);
-        addons.put(loader.getModule().getName(), loader.getModule());
+        JavaAddon addon = loader.getAddon();
+        addons.put(addon.getName(), addon);
         loaders.add(loader);
+        addon.onLoad();
     }
 
     public static String readFileContentFromJar(String jar) throws IOException {
