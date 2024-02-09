@@ -9,7 +9,7 @@ public class LoadTest {
     @Test
     public void run() {
         File file = new File("./src/test/module");
-        Logger logger = Logger.getLogger("module_load_test");
+        Logger logger = Logger.getLogger("addon_load_test");
 
         AddonLoader loader = new AddonLoader(logger, file);
 

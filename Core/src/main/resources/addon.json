@@ -1,9 +1,0 @@
-{
-  "name": "AddonTest",
-  "version": "1.0",
-  "main": "org.example.addon.Main",
-  "authors": [
-    "By1337"
-  ],
-  "description": "description"
-}

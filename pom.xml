@@ -13,4 +13,18 @@
     <build>
         <defaultGoal>clean install</defaultGoal>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>by1337.space</id>
+            <name>releases</name>
+            <url>https://by1337.space/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>by1337.space</id>
+            <name>snapshots</name>
+            <url>https://by1337.space/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 </project>

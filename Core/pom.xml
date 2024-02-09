@@ -16,8 +16,22 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>by1337.space</id>
+            <name>releases</name>
+            <url>https://by1337.space/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>by1337.space</id>
+            <name>snapshots</name>
+            <url>https://by1337.space/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
   <build>
     <plugins>
+        <!--sources-->
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-source-plugin</artifactId>
@@ -33,6 +47,7 @@
             </executions>
         </plugin>
       <plugin>
+          <!--sources end-->
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.8.1</version>
