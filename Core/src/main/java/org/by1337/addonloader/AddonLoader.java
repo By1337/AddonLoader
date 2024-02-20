@@ -39,12 +39,12 @@ public class AddonLoader {
     }
 
     public void enable(String name) {
-        JavaAddon module = getModule(name);
+        JavaAddon module = getAddon(name);
         if (module == null) {
             throw new IllegalArgumentException("unknown addon: " + name);
         }
         if (module.isEnabled()) return;
-        logger.log(Level.INFO, "enabling addon " + module.getName());
+        module.getLogger().info("enabling...");
         try {
             module.setEnabled(true);
         } catch (Exception e) {
@@ -54,12 +54,12 @@ public class AddonLoader {
     }
 
     public void disable(String name) {
-        JavaAddon module = getModule(name);
+        JavaAddon module = getAddon(name);
         if (module == null) {
             throw new IllegalArgumentException("unknown addon: " + name);
         }
         if (!module.isEnabled()) return;
-        logger.log(Level.INFO, "disabling addon " + module.getName());
+        module.getLogger().info("disabling...");
         try {
             module.setEnabled(false);
         } catch (Exception e) {
@@ -72,7 +72,7 @@ public class AddonLoader {
     }
 
     public void unload(String name) {
-        JavaAddon module = getModule(name);
+        JavaAddon module = getAddon(name);
         if (module == null) {
             throw new IllegalArgumentException("unknown addon: " + name);
         }
@@ -104,7 +104,7 @@ public class AddonLoader {
     }
 
     @Nullable
-    public JavaAddon getModule(String name) {
+    public JavaAddon getAddon(String name) {
         return addons.get(name);
     }
 

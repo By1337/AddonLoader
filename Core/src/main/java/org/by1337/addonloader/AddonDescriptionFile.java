@@ -16,8 +16,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Supplier;
+import java.util.regex.Pattern;
 
 public class AddonDescriptionFile {
+    public static final Pattern pattern = Pattern.compile("^[a-zA-Z0-9-_]+$");
     private final String name;
     private final String mainClass;
     private final String version;
@@ -26,6 +28,7 @@ public class AddonDescriptionFile {
 
     public AddonDescriptionFile(JsonObject object) {
         name = object.get("name").getAsString();
+        validate(name);
         mainClass = object.get("main").getAsString();
         description = object.get("description").getAsString();
         version = object.get("version").getAsString();
@@ -67,9 +70,17 @@ public class AddonDescriptionFile {
         return description;
     }
 
-
     public Set<String> getAuthors() {
         return authors;
     }
 
+    public static void validate(String input) {
+        validate(input, () -> String.format("Invalid name. Must be [a-zA-Z0-9._-]: '%s'", input));
+    }
+
+    public static void validate(String input, Supplier<String> message) {
+        if (!pattern.matcher(input).matches()) {
+            throw new IllegalArgumentException(message.get());
+        }
+    }
 }

@@ -56,7 +56,7 @@ public class AddonClassLoader extends URLClassLoader {
         } catch (IllegalAccessException ex) {
             throw new InvalidAddonException("No public constructor", ex);
         } catch (InstantiationException ex) {
-            throw new InvalidAddonException("Abnormal plugin type", ex);
+            throw new InvalidAddonException("Abnormal addon type", ex);
         }
     }
 
@@ -91,7 +91,7 @@ public class AddonClassLoader extends URLClassLoader {
             Class<?> result = loader.getClassByName(name, resolve);
 
             if (result != null && result.getClassLoader() instanceof AddonClassLoader addonClassLoader) {
-                String addon = addonClassLoader.addon.getName();
+//                String addon = addonClassLoader.addon.getName();
 //                if (!seenIllegalAccess.contains(addon) &&
 //                        (!description.getDepend().contains(addon) ||
 //                                !description.getSoftdepend().contains(addon) ||

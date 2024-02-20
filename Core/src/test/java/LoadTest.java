@@ -14,7 +14,7 @@ public class LoadTest {
         AddonLoader loader = new AddonLoader(logger, file);
 
         loader.loadAll();
-        Assert.assertNotNull(loader.getModule("ExampleAddon"));
+        Assert.assertNotNull(loader.getAddon("ExampleAddon"));
 
         loader.enableAll();
 
